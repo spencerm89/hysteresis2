@@ -33,7 +33,7 @@ a fitted ellipse or hysteresis loop created by either \code{\link{fel}}, \code{\
 optional logical that numbers points from first to last. 
 }
   \item{values}{
-one of NULL, "inherent", "hysteresis", "hysteresis.all", "derived","ellipse", or "ellipse.all". Parameter values printed in title. Default is NULL in which case none are printed. See \code{\link{loop.parameters} or \code{\link{ellipse.parameters}}
+one of NULL, "inherent", "hysteresis", "hysteresis.all", "derived","ellipse", or "ellipse.all". Parameter values printed in title. Default is NULL in which case none are printed. See \code{\link{loop.parameters}} or \code{\link{ellipse.parameters}}
 }
   \item{xlim}{
 limits for x axis.

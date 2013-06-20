@@ -1,12 +1,12 @@
 mloop <- function(cx=0,cy=0,retention=0.2,b.x=0.6,b.y=0.8,n=1,m=1,sd.x=0,sd.y=0,phase.angle=0,n.points=24,period=24,extended.classical=FALSE) {
  if (extended.classical==FALSE) {
-  x<-cx+b.x*cos((1:n.points)/period*2*pi+phase.angle)+rnorm(n.points,0,sd.x)
-  y<-cy+retention*sin((1:n.points)/period*2*pi+phase.angle)^m+b.y*cos((1:n.points)/period*2*pi+phase.angle)^n+rnorm(n.points,0,sd.y)
+  x<-cx+b.x*cos((1:n.points)/period*2*pi+phase.angle/180*pi)+rnorm(n.points,0,sd.x)
+  y<-cy+retention*sin((1:n.points)/period*2*pi+phase.angle/180*pi)^m+b.y*cos((1:n.points)/period*2*pi+phase.angle/180*pi)^n+rnorm(n.points,0,sd.y)
  }
   else {
-   direc<-sign(cos((1:n.points)/period*2*pi+phase.angle))
-   x<-cx+b.x*cos((1:n.points)/period*2*pi+phase.angle)+rnorm(n.points,0,sd.x)
-   y<-cy+retention*sin((1:n.points)/period*2*pi+phase.angle)^m+direc*(b.y*abs(cos((1:n.points)/period*2*pi+phase.angle))^n)+rnorm(n.points,0,sd.y)
+   direc<-sign(cos((1:n.points)/period*2*pi+phase.angle/180*pi))
+   x<-cx+b.x*cos((1:n.points)/period*2*pi+phase.angle/180*pi)+rnorm(n.points,0,sd.x)
+   y<-cy+retention*sin((1:n.points)/period*2*pi+phase.angle/180*pi)^m+direc*(b.y*abs(cos((1:n.points)/period*2*pi+phase.angle/180*pi))^n)+rnorm(n.points,0,sd.y)
  }
  if (n==1) beta.split.angle<-atan2(b.y,b.x) 
  else if (n >= 2) beta.split.angle <- 0
