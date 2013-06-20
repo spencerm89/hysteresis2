@@ -74,9 +74,9 @@ if (any(show=="semi.major")) segments(a$values["cx","Estimate"],a$values["cy","E
 if (any(show=="semi.minor")) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["semi.minor","Estimate"]*cos(a$values["rote.deg","Estimate"]/180*pi+pi/2),a$values["cy","Estimate"]+a$values["semi.minor","Estimate"]*sin(a$values["rote.deg","Estimate"]/180*pi+pi/2),col="red")
 
 if (any(show %in% c("b.x","b.y"))) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["b.x","Estimate"],a$values["cy","Estimate"]+a$values["b.y","Estimate"],col="blue")
-  if (any(show %in% c("focus.x","focus.y"))) points(c(a$values["cx","Estimate"]+a$values["focus.x","Estimate"],a$values["cx","Estimate"]-a$values["focus.x","Estimate"]),c(a$values["cy","Estimate"]+a$values["focus.y","Estimate"],a$values["cy","Estimate"]-a$values["focus.y","Estimate"]),col="gold",cex=2)
+  if (any(show %in% c("focus.x","focus.y"))) points(c(a$values["cx","Estimate"]+a$values["focus.x","Estimate"],a$values["cx","Estimate"]-a$values["focus.x","Estimate"]),c(a$values["cy","Estimate"]+a$values["focus.y","Estimate"],a$values["cy","Estimate"]-a$values["focus.y","Estimate"]),col="gold",cex=2,pch=19)
   if (any(show=="rote.deg")) {
-    ti <- (1:100)/50*pi*(a$values["rote.deg","Estimate"]/360)
+    ti <- (1:100)/50*pi*(a$values["rote.deg","Estimate"]/360)-a$values["split.angle","Estimate"]
     newX <- a$values["b.x","Estimate"]*cos(ti)+a$values["cx","Estimate"]
     newY <- a$values["b.y","Estimate"]*cos(ti)+a$values["retention","Estimate"]*sin(ti)+a$values["cy","Estimate"]
     lines(newY~newX,col="red",lwd=2)
