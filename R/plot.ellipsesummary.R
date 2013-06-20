@@ -75,8 +75,9 @@ if (any(show=="semi.minor")) segments(a$values["cx","Estimate"],a$values["cy","E
 
 if (any(show %in% c("b.x","b.y"))) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["b.x","Estimate"],a$values["cy","Estimate"]+a$values["b.y","Estimate"],col="blue")
   if (any(show %in% c("focus.x","focus.y"))) points(c(a$values["cx","Estimate"]+a$values["focus.x","Estimate"],a$values["cx","Estimate"]-a$values["focus.x","Estimate"]),c(a$values["cy","Estimate"]+a$values["focus.y","Estimate"],a$values["cy","Estimate"]-a$values["focus.y","Estimate"]),col="gold",cex=2,pch=19)
-  if (any(show=="rote.deg")) arrows(a$values["cx","Estimate"]+a$values["coercion","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["focus.x","Estimate"],a$values["cy","Estimate"]+a$values["focus.y","Estimate"])
-  
+  if (any(show=="rote.deg")) { arrows(a$values["cx","Estimate"]+a$values["coercion","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["focus.x","Estimate"],a$values["cy","Estimate"]+a$values["focus.y","Estimate"])
+                               segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["coercion","Estimate"],a$values["cy","Estimate"],lty=2)
+  }
 if (any(show=="retention")) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"],a$values["cy","Estimate"]+a$values["retention","Estimate"],col="purple")
 
 if (any(show=="coercion")) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["coercion","Estimate"],a$values["cy","Estimate"],col="green")

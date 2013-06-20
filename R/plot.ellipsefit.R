@@ -76,8 +76,10 @@ if (any(show=="semi.minor")) segments(a$values["cx"],a$values["cy"],a$values["cx
 
 if (any(show %in% c("b.x","b.y"))) segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["b.x"],a$values["cy"]+a$values["b.y"],col="blue")
   if (any(show %in% c("focus.x","focus.y"))) points(c(a$values["cx"]+a$values["focus.x"],a$values["cx"]-a$values["focus.x"]),c(a$values["cy"]+a$values["focus.y"],a$values["cy"]-a$values["focus.y"]),col="gold",cex=2,pch=19)
-  if (any(show=="rote.deg")) arrows(a$values["cx"]+a$values["coercion"],a$values["cy"],a$values["cx"]+a$values["focus.x"],a$values["cy"]+a$values["focus.y"])
- if (any(show=="retention")) segments(a$values["cx"],a$values["cy"],a$values["cx"],a$values["cy"]+a$values["retention"],col="purple")
+  if (any(show=="rote.deg")) {arrows(a$values["cx"]+a$values["coercion"],a$values["cy"],a$values["cx"]+a$values["focus.x"],a$values["cy"]+a$values["focus.y"],lty=2)
+                              segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["coercion"],a$values["cy"],lty=2)
+}
+  if (any(show=="retention")) segments(a$values["cx"],a$values["cy"],a$values["cx"],a$values["cy"]+a$values["retention"],col="purple")
   
   if (any(show=="coercion")) segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["coercion"],a$values["cy"],col="green")
   
