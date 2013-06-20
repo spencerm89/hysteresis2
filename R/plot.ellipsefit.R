@@ -75,7 +75,7 @@ if (any(show=="semi.major")) segments(a$values["cx"],a$values["cy"],a$values["cx
 if (any(show=="semi.minor")) segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["semi.minor"]*cos(a$values["rote.deg"]/180*pi+pi/2),a$values["cy"]+a$values["semi.minor"]*sin(a$values["rote.deg"]/180*pi+pi/2),col="red")
 
 if (any(show %in% c("b.x","b.y"))) segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["b.x"],a$values["cy"]+a$values["b.y"],col="blue")
-  if (any(show %in% c("focus.x","focus.y"))) points(c(a$values["cx"]+a$values["focus.x"],a$values["cx"]-a$values["focus.x"]),c(a$values["cy"]+a$values["focus.y"],a$values["cy"]-a$values["focus.y"]),col="gold",size=2)
+  if (any(show %in% c("focus.x","focus.y"))) points(c(a$values["cx"]+a$values["focus.x"],a$values["cx"]-a$values["focus.x"]),c(a$values["cy"]+a$values["focus.y"],a$values["cy"]-a$values["focus.y"]),col="gold",cex=2)
   if (any(show=="rote.deg")) {
     ti <- (1:100)/50*pi*(a$values["rote.deg"]/360)
     newX <- a$values["b.x"]*cos(ti)+a$values["cx"]
