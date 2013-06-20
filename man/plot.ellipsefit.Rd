@@ -48,12 +48,7 @@ an overall title for the plot.
 draw an ellipse with 100 points. If \code{FALSE} use predicted ellipse from \code{ellipsefit} object which will result in a rougher shape.
 }
   \item{show}{
-<<<<<<< HEAD
-a character vector of parameters to be shown in the plot. Possible values are "retention", "coercion", "b.x", "b.y", "semi.major", and "semi.minor".
-show is only available for n=m=1.
-=======
-a character vector of parameters to be shown in the plot. Possible values are "retention", "coercion", "semi.major", "semi.minor", "focus.x" or "focus.y" and "b.x" or "b.y". Only available for ellipses.
->>>>>>> Some fixes.
+a character vector of parameters to be shown in the plot. Possible values are "retention", "coercion", "b.x", "b.y", "focus.x", "focus.y", "rote.deg", "semi.major", and "semi.minor". \code{show} is only available for n=m=1. Only available for ellipses.
 }
   \item{split.line}{
 logical. Whether to include the split line, which is the input output relationship when hysteresis is removed.
