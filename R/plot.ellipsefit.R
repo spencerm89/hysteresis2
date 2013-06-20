@@ -79,7 +79,7 @@ if (any(show %in% c("b.x","b.y"))) segments(a$values["cx"],a$values["cy"],a$valu
   if (any(show=="rote.deg")) arrows(a$values["cx"]+a$values["coercion"],a$values["cy"],a$values["cx"]+a$values["focus.x"],a$values["cy"]+a$values["focus.y"])
  if (any(show=="retention")) segments(a$values["cx"],a$values["cy"],a$values["cx"],a$values["cy"]+a$values["retention"],col="purple")
   
-  if (any(show=="coercion")) segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["coercion"],a$values["cy"],col="yellow")
+  if (any(show=="coercion")) segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["coercion"],a$values["cy"],col="green")
   
 if(putNumber==TRUE) text(a$x,a$y,as.character(format(1:length(a$y),digits=4)))
 

@@ -79,7 +79,7 @@ if (any(show %in% c("b.x","b.y"))) segments(a$values["cx","Estimate"],a$values["
   
 if (any(show=="retention")) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"],a$values["cy","Estimate"]+a$values["retention","Estimate"],col="purple")
 
-if (any(show=="coercion")) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["coercion","Estimate"],a$values["cy","Estimate"],col="yellow")
+if (any(show=="coercion")) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["coercion","Estimate"],a$values["cy","Estimate"],col="green")
   
 if (putNumber==TRUE){
   text(a$x,a$y,as.character(format(1:length(a$y),digits=4)))
