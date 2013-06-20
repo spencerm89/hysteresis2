@@ -75,12 +75,8 @@ if (any(show=="semi.minor")) segments(a$values["cx","Estimate"],a$values["cy","E
 
 if (any(show %in% c("b.x","b.y"))) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["b.x","Estimate"],a$values["cy","Estimate"]+a$values["b.y","Estimate"],col="blue")
   if (any(show %in% c("focus.x","focus.y"))) points(c(a$values["cx","Estimate"]+a$values["focus.x","Estimate"],a$values["cx","Estimate"]-a$values["focus.x","Estimate"]),c(a$values["cy","Estimate"]+a$values["focus.y","Estimate"],a$values["cy","Estimate"]-a$values["focus.y","Estimate"]),col="gold",cex=2,pch=19)
-  if (any(show=="rote.deg")) {
-    ti <- (1:100)/50*pi*(a$values["rote.deg","Estimate"]/360)-a$values["split.angle","Estimate"]
-    newX <- a$values["b.x","Estimate"]*cos(ti)+a$values["cx","Estimate"]
-    newY <- a$values["b.y","Estimate"]*cos(ti)+a$values["retention","Estimate"]*sin(ti)+a$values["cy","Estimate"]
-    lines(newY~newX,col="red",lwd=2)
-  } 
+  if (any(show=="rote.deg")) arrows(a$values["cx","Estimate"]+a$values["coercion","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["focus.x","Estimate"],a$values["cy","Estimate"]+a$values["focus.y","Estimate"])
+  
 if (any(show=="retention")) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"],a$values["cy","Estimate"]+a$values["retention","Estimate"],col="purple")
 
 if (any(show=="coercion")) segments(a$values["cx","Estimate"],a$values["cy","Estimate"],a$values["cx","Estimate"]+a$values["coercion","Estimate"],a$values["cy","Estimate"],col="yellow")
