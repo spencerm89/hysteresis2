@@ -27,7 +27,7 @@ number. Saturation point x coordinate. Horizontal distance from the center to th
 number. Saturation point y coordinate. Vertical distance from the center to the point where the input is at its maximum. 
 }
   \item{phase.angle}{
-number in radians. Defines the starting point of the loop. The initial angle of the input function at its origin. 
+number in degrees. Defines the starting point of the loop. The initial angle of the input function at its origin. 
 }  
   \item{cx}{
 number. Center of input x.
