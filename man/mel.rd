@@ -23,10 +23,10 @@ One of 1,2,3 or 4. If \code{method=1}; \code{semi.major}, \code{semi.minor} and 
  Default is \code{method=1}.
 }
   \item{cx}{
-center of input x.
+Center of input x.
 }
   \item{cy}{
-center of output y.
+Center of output y.
 }
   \item{phase.angle}{
 defines the starting point of the ellipse. Does not change ellipse shape.
@@ -35,16 +35,16 @@ defines the starting point of the ellipse. Does not change ellipse shape.
 Theta, angle of rotation. In degrees. Only used if \code{method=1}.
 }
   \item{semi.major}{
-length of major axis. Only used if \code{method=1}.
+Half length of major axis. Only used if \code{method=1}.
 }
   \item{semi.minor}{
-length of minor axis. Only used if \code{method=1}.
+Half length of minor axis. Only used if \code{method=1}.
 }
   \item{b.x}{
-saturation point x coordinate. Only used if \code{method=2}.
+Saturation point x coordinate. Only used if \code{method=2}.
 }
   \item{b.y}{
-saturation point y coordinate. Only used if \code{method=2}.
+Saturation point y coordinate. Only used if \code{method=2}.
 }
   \item{retention}{
 another ellipse parameter used if \code{method=2}. split point, representing vertical distance from center to upper loop trajectory. It is the intersection of the loop and the output axis characterizing the distortion in the response at the average input challenge.}
@@ -62,7 +62,7 @@ The number of points between the location where the input reaches its maximum va
 number of points on ellipse. Equally spaced around circumference of ellipse/period.
 }
   \item{period}{
-number of points required to make a full loop around the ellipse.
+Number of points required to make a full loop around the ellipse.
 }
   \item{sd.x}{
 optional number specifying a normally distributed standard deviation for x.
