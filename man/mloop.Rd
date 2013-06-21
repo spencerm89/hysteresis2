@@ -50,7 +50,7 @@ number of points on loop.
 number of equally spaced points required to make a full loop.
 }
   \item{extended.classical}{
-logical. If true, fit a classical hysteresis loop regardless of n. Uses \deqn{y_t=sign(cos(2*pi*t/period))*(b.y*abs(cos(2*pi*t/period))^n)+retention*sin(2*pi*t/period)^m+cy+e_{y,t}} instead of 
+logical. If true, fit a classical hysteresis loop regardless of n. Uses \deqn{y_t=sign(cos(2*pi*t/period))*b.y*abs(cos(2*pi*t/period))^n + retention*sin(2*pi*t/period)^m+cy+e_{y,t}} instead of 
 \deqn{y_t=b.y*cos(2*pi*t/period)^n+retention*sin(2*pi*t/period)^m+cy+e_{y,t}}
 Allows the user to fit classical loops with any n>1 instead of just odd numbered n. Default is false.
 }
@@ -73,12 +73,12 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 Fit a hysteresis loop with the function \code{\link{floop}}.
 }
 \examples{
-#Simulate a loop with n=5, m=3, retention=.9.
-loop1 <- mloop(cx=5,cy=8,retention=.9,sd.x=0.05,sd.y=0.05,n=5,m=3)
- loopmodel <- floop(loop1$x,loop1$y,n=5,m=3)
- loopmodel 
+#Simulate a loop with n=3, m=1, retention=.9.
+loop1 <- mloop(cx=5,cy=8,retention=.9,sd.x=0.01,sd.y=0.05,n=3,m=1)
+loopmodel <- floop(loop1$x,loop1$y,n=3,m=1)
+loopmodel 
 ##Plot hysteresis loop.
- plot(loopmodel,main="Simulated Hysteresis Loop n=5 m=3",xlab="Input",ylab="Output", values="hysteresis.all")
+plot(loopmodel,main="Simulated Hysteresis Loop n=3 m=1",xlab="Input",ylab="Output",values="hysteresis.all")
 }
 \keyword{ models }
 
