@@ -44,10 +44,10 @@ Derived Hysteresis Parameters
   the area of the hysteresis loop. Can indicate the work done during one cycle or period.
   }
   \item{lag}{
-  Lag indicates the delay between attributes of the output and the input (such as peak to peak for the ellipse when m=1, n=1).
+  lag indicates the delay between attributes of the output and the input (such as peak to peak for the ellipse when m=1, n=1).
   }
   \item{split.angle}{
-  Beta, the angle between the tangent to the un-split curve at the center and the input axis.
+  beta, the angle between the tangent to the un-split curve at the center and the input axis.
   }
   \item{hysteresis.x}{
   hysteresis along the input axis. The proportion of coercion due to input saturation b.x.
@@ -63,19 +63,19 @@ Ellipse Parameters
  Amplitude of the output.
  }
   \item{rote.deg and rote.rad}{
-  Theta, counter clockwise angle of rotation between the input axis and the semi-major axis of the loop.In degrees and radians respectively.
+  theta, counter clockwise angle of rotation between the input axis and the semi-major axis of the loop.In degrees and radians respectively.
   }
   \item{semi.major}{
-  Semi major axis of ellipse, maximum distance from center to perimeter of ellipse.
+  half major axis of ellipse, maximum distance from center to perimeter of ellipse.
   }
   \item{semi.minor}{
-  Semi minor axis of ellipse, shortest distance from center to perimeter of ellipse. 
+  half minor axis of ellipse, shortest distance from center to perimeter of ellipse. 
   }
   \item{focus.x, focus.y}{
-Input and output distances of focus points from center.
+input x and output y distances of focus points from center.
   }
    \item{eccentricity}{
-Measure of deviation from circle,
+Measure of deviation from circle. Zero indicate no deviation from circle.
 \deqn{\sqrt{\frac{semi.major^2-semi.minor^2}/{semi.major^2}}}
   }
 }
@@ -92,12 +92,12 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 theloop<-mloop(sd.x=0.05,sd.y=0.05,n=2,m=3)
 loopmodel<-floop(theloop$x,theloop$y,n=2,m=3)
 loopmodel
-plot(loopmodel,main="Hysteresis Loop n=2 m=3")
+plot(loopmodel,main="Hysteresis Loop n=2 m=3",values="hysteresis")
 
 #Ellipse Parameters
 ellipse.eig <- mel(semi.major=7,semi.minor=4,rote.deg=30)
 ellip.eigen.fit <- fel(ellipse.eig$x,ellipse.eig$y)
 ellip.eigen.fit$Estimates
-plot(ellip.eigen.fit,main="Ellipse from Eigenvalue Parameters",show=c("semi.major","semi.minor"))
+plot(ellip.eigen.fit,main="Ellipse from Eigenvalue Parameters",show=c("semi.major","semi.minor","rote.deg"),values="ellipse")
 }
 \keyword{ models }
