@@ -24,7 +24,7 @@ delta.error.loop <- function(g) {
   b.xSE<-deltamethod(~sqrt(x2^2+x3^2),c(z$coefficients,z2$coefficients), cov.matrix)
   phase.angleSE<-deltamethod(~atan(x3/x2),c(z$coefficients,z2$coefficients), cov.matrix)
 
-  if (g$values["n"]==1) splitSE <-   deltamethod(~atan(x6/sqrt(x2^2+x3^2)),c(z$coefficients,z2$coefficients), cov.matrix)
+  if (g$values["n"]==1) splitSE <-   deltamethod(~atan(x6/sqrt(x2^2+x3^2)),c(z$coefficients,z2$coefficients), cov.matrix)*180/pi
 else splitSE <- NA
   hysteresis.ySE <- deltamethod(~x5/x6,c(z$coefficients,z2$coefficients), cov.matrix)
   m <- g$values["m"]

@@ -1,4 +1,4 @@
-plot.fittedloop <- function (a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,...) {
+plot.fittedloop <- function (a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...) {
   ti <- (1:101)*pi/50
   Input <- a$values["b.x"]*cos(ti)+a$values["cx"]
   if (a$extended.classical==FALSE) Output <- a$values["b.y"]*cos(ti)^a$values["n"]+a$values["retention"]*sin(ti)^a$values["m"]+a$values["cy"]
@@ -43,6 +43,11 @@ plot.fittedloop <- function (a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FAL
     mtext(paste("Hysteresis x=",format(a$values["hysteresis.x"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y"],digits=3)),side=3,line=0.0,cex=0.75)
   }
   }
+  
+  if (any(show %in% c("b.x","b.y"))) segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["b.x"],a$values["cy"]+a$values["b.y"],col="blue")
+  if (any(show=="retention")) segments(a$values["cx"],a$values["cy"],a$values["cx"],a$values["cy"]+a$values["retention"],col="purple") 
+  if (any(show=="coercion")) segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["coercion"],a$values["cy"],col="green")
+  
   points(a$y~a$x,pch=1,cex=0.85)
   if (split.line==TRUE) {
   if (a$extended.classical==FALSE) split.line <- a$values["b.y"]*cos(ti)^a$values["n"]+a$values["cy"]

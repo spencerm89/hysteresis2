@@ -18,8 +18,8 @@ plot.ellipsesummary(a,putNumber=FALSE,values=NULL,xlim=NULL,ylim=NULL,main=NULL,
 plot.ellipsefitlist(a,values=NULL, ...) 
 plot.ellipsesummarylist(a,values=NULL, ...) 
 
-plot.fittedloop(a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NuLL,...)
-plot.loopsummary(a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NuLL,...)
+plot.fittedloop(a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NuLL,main=NuLL,show=NULL,...)
+plot.loopsummary(a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NuLL,main=NULL,show=NULL,...)
 
 plot.fittedlooplist(a,main=NULL,values=NULL)
 plot.loopsummarylist(a,main=NULL,values=NuLL)
@@ -48,7 +48,7 @@ an overall title for the plot.
 draw an ellipse with 100 points. If \code{FALSE} use predicted ellipse from \code{ellipsefit} object which will result in a rougher shape.
 }
   \item{show}{
-a character vector of parameters to be shown in the plot. Possible values are "retention", "coercion", "b.x", "b.y", "focus.x", "focus.y", "rote.deg", "semi.major", and "semi.minor". \code{show} is only available for n=m=1. Only available for ellipses.
+a character vector of parameters to be shown in the plot. Possible values are "retention", "coercion", "b.x", "b.y", "focus.x", "focus.y", "rote.deg", "semi.major", and "semi.minor". \code{show} is only available for n=m=1. Only "retention", "coercion", "b.x", and "b.y" are available for all loops.
 }
   \item{split.line}{
 logical. Whether to include the split line, which is the input output relationship when hysteresis is removed.

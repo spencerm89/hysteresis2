@@ -40,7 +40,7 @@ loopboot <-
     b.y<-coef(Tb.lm)[[3]]
     retention<- coef(Tb.lm)[[2]]
     cy<-coef(Tb.lm)[[1]]
-    if (n==1) beta.split.angle<-atan2(b.y,b.x) 
+    if (n==1) beta.split.angle<-atan2(b.y,b.x)*180/pi 
     else if (n >= 2) beta.split.angle <- 0
     else beta.split.angle<-NA
     hysteresis.x <- 1/sqrt(1+(b.y/retention)^(2/m))

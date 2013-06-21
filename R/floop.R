@@ -69,7 +69,7 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
   if (extended.classical==FALSE) pred.y<-cy+retention*sin(t+phase.angle)^m+b.y*costp^n
  if (extended.classical==TRUE)  pred.y<-cy+retention*sin(t+phase.angle)^m+direc*(b.y*abs(costp)^n)
   residuals <- sqrt((dat$x-pred.x)^2+(dat$y-pred.y)^2)
-  if (n==1) beta.split.angle<-atan2(b.y,b.x) 
+  if (n==1) beta.split.angle<-atan2(b.y,b.x)*180/pi 
     else if (n >= 2) beta.split.angle <- 0
     else beta.split.angle<-NA
   hysteresis.x <- 1/sqrt(1+(b.y/retention)^(2/m))
