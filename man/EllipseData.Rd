@@ -5,7 +5,7 @@
 Simulated Ellipse Data for 6 Ellipses with period=24.
 }
 \description{
-6 ellipses created by mel. All 6 ellipses are centered around the origin with a phase angle of pi/2 and differ by subject in terms of their retention and saturation point. Errors in both the input and the output are given a standard deviation of 0.1 for all ellipses. Used in the help page for \code{\link{fel.repeated}}.
+Three subjects with two replications = 6 ellipses created by mel. All 6 ellipses are centered around the origin with a phase angle of pi/2 and differ by subject in terms of their retention and saturation point. Errors in both the input and the output are given a standard deviation of 0.1 for all ellipses. Used in the help page for \code{\link{fel.repeated}}.
 }
 \usage{data(EllipseData)}
 \format{
@@ -32,14 +32,16 @@ subjects <- c(rep("A", length(ellip1$x)), rep("B", length(ellip2$x)), rep("C",
     length(ellip3$x)))  
     repeated <- rep(c(1,2),each=24,times=3)  
     
-##Use.
+#________________________ Example of EllipseData  ______________________________
 data(EllipseData) 
-models <- fel.repeated(EllipseData$X, EllipseData$Y, method = "harmonic2", subjects = EllipseData$subjects,subjects.in=c("A","C"),repeated=EllipseData$repeated)
-models
-summodels <- summary(models)
-summodels
-summodels$models["A",1]
+six.models <- fel.repeated(EllipseData$X, EllipseData$Y, method = "harmonic2", subjects = EllipseData$subjects,repeated=EllipseData$repeated)
+six.models
+ 
+#Model fit for B-1
+six.models$models["B",1]
+
 par(mfrow=c(2,3))
-plot(models)
+plot(six.models)
+par(mfrow=c(1,1))
 }
 \keyword{datasets}
