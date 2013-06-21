@@ -66,16 +66,16 @@ Ellipse Parameters
   Theta, counter clockwise angle of rotation between the input axis and the semi-major axis of the loop.In degrees and radians respectively.
   }
   \item{semi.major}{
-  Semi major axis of ellipse, maximum distance from center to perimeter of ellipse.
+  Half major axis of ellipse, maximum distance from center to perimeter of ellipse.
   }
   \item{semi.minor}{
-  Semi minor axis of ellipse, shortest distance from center to perimeter of ellipse. 
+  Half minor axis of ellipse, shortest distance from center to perimeter of ellipse. 
   }
   \item{focus.x, focus.y}{
-Input and output distances of focus points from center.
+Input x and output y distances of focus points from center.
   }
    \item{eccentricity}{
-Measure of deviation from circle,
+Measure of deviation from circle. (Zero indicates circle)
 \deqn{\sqrt{\frac{semi.major^2-semi.minor^2}/{semi.major^2}}}
   }
 }
@@ -92,12 +92,13 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 theloop<-mloop(sd.x=0.05,sd.y=0.05,n=2,m=3)
 loopmodel<-floop(theloop$x,theloop$y,n=2,m=3)
 loopmodel
-plot(loopmodel,main="Hysteresis Loop n=2 m=3")
+
+plot(loopmodel,main="Hysteresis Loop n=2 m=3",values="hysteresis")
 
 #Ellipse Parameters
 ellipse.eig <- mel(semi.major=7,semi.minor=4,rote.deg=30)
 ellip.eigen.fit <- fel(ellipse.eig$x,ellipse.eig$y)
 ellip.eigen.fit$Estimates
-plot(ellip.eigen.fit,main="Ellipse from Eigenvalue Parameters",show=c("semi.major","semi.minor"))
+plot(ellip.eigen.fit,main="Ellipse from Eigenvalue Parameters",show=c("semi.major","semi.minor","rote.deg"),values="ellipse")  
 }
 \keyword{ models }
