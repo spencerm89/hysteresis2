@@ -31,7 +31,8 @@ length of time required to make a full loop. Reciprocal of frequency, and if tim
 an optional factor or list of factors, each of the same length as x. Use to identify a list of different loops to be fit from one set of data, in which case \code{floop} returns an object of class \code{fittedlooplist} instead of \code{fittedloop}.
 }
   \item{times}{
-either a numeric vector of length nrow(x) or the default "equal". If the times at which loop observations are taken are known a numeric vector can be used to give those times. If the default "equal" is used instead time points are assumed to be equally spaced in a counterclockwise fashion.
+either a numeric vector of length nrow(x) or the default "equal". If the times at which loop observations are taken are known, a numeric vector can be used to give those times. 
+If the default "equal" is used instead, time points are assumed to be equally spaced in a counterclockwise fashion.
 }
   \item{subset}{
 an optional vector specifying a subset of observations to be used in the fitting process.
@@ -40,8 +41,10 @@ an optional vector specifying a subset of observations to be used in the fitting
 a function which indicates what should happen when the data contain NAs. The default is set by the \code{na.action} setting of \code{\link{options}}, the �factory-fresh� default 
 is \code{\link{na.omit}}. Value \code{link{na.exclude}} can be useful.
 }
-  \item{extended.classical}{
-fit a classical hysteresis loop regardless of the value of n. Use \deqn{y_t=retention*sin(2*pi*t/period)^m+sign(cos(2*pi*t/period))*(b.y*abs(cos(2*pi*t/period))^n)+cy+e_{y,t}} instead of \deqn{y_t=retention*sin(2*pi*t/period)^m+b.y*cos(2*pi*t/period)^n+cy+e_{y,t}}. Allows the user to fit classical loops with any n>1 instead of just odd numbered n. Default is false.
+  \item{extended.classical}{ 
+logical. If true, fit a classical hysteresis loop regardless of n. Uses \deqn{y_t=sign(cos(2*pi*t/period))*b.y*abs(cos(2*pi*t/period))^n + retention*sin(2*pi*t/period)^m+cy+e_{y,t}} instead of 
+\deqn{y_t=b.y*cos(2*pi*t/period)^n+retention*sin(2*pi*t/period)^m+cy+e_{y,t}}
+Allows the user to fit classical loops with any n>1 instead of just odd numbered n. Default is false.
 }
   \item{boot}{
 logical, if TRUE results will be bootstrapped by the default arguments of \code{\link{summary.fittedloop}}.
@@ -76,11 +79,24 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 Simulate a hysteresis loop with the function \code{\link{mloop}}. Alternatively see \code{\link{fel}} for fitting an ellipse (a hysteresis loop with parameters m=1, n=1) using a variety of methods. If a loop is an ellipse, use of fel is strongly recommended instead of floop. 
 }
 \examples{
-##Simulate and fit a loop.
-loop1 <- mloop(sd.x=0.05,sd.y=0.05,m=3,n=5)
-model <- floop(loop1$x,loop1$y,m=3,n=5)
-summary(model)
-plot(model,main="Hysteresis Loop")
+### Simulate and fit a hysteresis loop with n=1 and m=3.
+loopf <- mloop(sd.x=0.07,sd.y=0.05,n=1,m=3, retention=.5)
+loopf.model <- floop(loopf$x,loopf$y,n=1,m=3)
+loopf.model                #Gives estimate and delta standard errors
+loopf.model$Estimates      #List estimates only  
+loopf.model$Std.Errors     #List delta standard errors  
+
+### Plot hysteresis loop.
+plot(loopf.model,main="Simulated Hysteresis Loop n=1 m=3",values="hysteresis.all")
+#plot(loopf.model,main="Simulated Hysteresis Loop n=1 m=3",values="hysteresis.all",show=c("retention","coercion"))
+          
+### Bootstrap estimates and standard errors (Seed is necessary if want to reproduce results)
+booted.loopf <- floop(loopf$x,loopf$y,retention=.5,n=1,m=3,boot=TRUE, seed=1523)
+booted.loopf                   #Gives boot estimates, boot bias, boot SE and boot quartiles
+booted.loopf$Boot.Estimates    #Gives boot estimates 
+booted.loopf$Boot.Std.Errors   #Gives boot standard errors 
+plot(booted.loopf,main="Simulated Bootstrapped Loop n=1, m=3",putNumber=TRUE,values="hysteresis.all")
+
 }
 \keyword{ models }
 
