@@ -63,6 +63,8 @@ Bootstrapped estimates for parameter values are provided with \code{\link{summar
 }
 \value{
 \code{fel} returns an object of class \code{ellipsefit} or \code{ellipsefitlist}.
+  \item{call}{the function call.}
+  \item{fit}{information dependent on the fitting method used.}
   \item{method}{the \code{method} used.}
   \item{x}{the input x used.}
   \item{y}{the output y used.}
@@ -70,6 +72,7 @@ Bootstrapped estimates for parameter values are provided with \code{\link{summar
   \item{pred.y}{the fitted values for y.}
   \item{period.time}{a vector that contains times converted to radians for observations, either estimated after the ellipse has been fitted or given beforehand by \code{times}.}
   \item{values}{a named vector of parameter estimates. See \code{\link{loop.parameters}}.}
+  \item{Estimates}{a named vector of parameter estimates. See \code{\link{loop.parameters}}.}
   \item{residuals}{algebraic residuals from the model. The function \code{\link{residuals.ellipsefit}} can produce other types of residuals from an \code{ellipsefit} object.}
     \item{Std.Errors}{Standard errors produced by the delta method. See \code{\link{delta.error}}.}
     If multiple ellipses are fit simultaneously there will be three arguments to the response, models which will contain the seperate model fits for each ellipse, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{fel.repeated}}.
