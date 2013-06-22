@@ -72,25 +72,26 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 \code{\link{fel}} for a more general way to fit multiple ellipses, or for fitting just one ellipse. \code{\link{plot.ellipsefit}} for plotting and \code{\link{summary.ellipsefit}} for summarizing and bootstrapping an \code{ellipsefitlist} object.  
 }
 \examples{
+## Select 2 subjects with 2 replications and fit 4 ellipses
 data(EllipseData) 
-models <- fel.repeated(EllipseData$X, EllipseData$Y, method = "harmonic2", subjects = EllipseData$subjects,subjects.in=c("A","C"),repeated=EllipseData$repeated)
-models
-
-summodels <- summary(models,N=1000,seed=25)
-##Or alternatively
-summodels=fel.repeated(EllipseData$X, EllipseData$Y,method = "harmonic2", subjects =
-EllipseData$subjects,subjects.in=c("A","C"),repeated=EllipseData$repeated,boot=TRUE,N=1000,seed=25)
-
-summodels
-summodels$Boot.Estimates
-summodels$Boot.Std.Errors
-summodels$models["A",1]
+emodels.rep <- fel.repeated(EllipseData$X, EllipseData$Y, method = "harmonic2", subjects = EllipseData$subjects,subjects.in=c("A","C"),repeated=EllipseData$repeated)
+emodels.rep                #Gives estimates and delta standard errors 
+emodels.rep$Estimates      #List estimates only
+emodels.rep$Std.Errors     #List delta standard errors 
 par(mfrow=c(2,2))
-plot(models)
+plot(emodels.rep, main="Repeated Ellipses",xlab="X")
 par(mfrow=c(1,1))
 
+### Bootstrap estimates and standard errors (Seed is necessary if want to reproduce results)
+boot.rep.ellipse=fel.repeated(EllipseData$X, EllipseData$Y,method = "harmonic2", subjects = EllipseData$subjects,subjects.in=c("A","C"),repeated=EllipseData$repeated,boot=TRUE,seed=123)
+boot.rep.ellipse  #Gives boot estimates, boot bias, boot SE and boot quartiles
+
 ##Can write results to a file. First set your directory from the file tab.
-##write.table(summodels$Boot.Estimates,"Hys.eg.bootvalues.txt")
+#Change file path in command below to coincide with where you want to store data files
+#setwd("C:/Users................")
+#write.table(boot.rep.ellipse$Boot.Estimates,"Ellipes.eg.repbootvalues.txt")
+#test.fel=read.table("Ellipes.eg.repbootvalues.txt",header=TRUE)
+#head(test.fel)
 }
 \keyword{ models }
 
