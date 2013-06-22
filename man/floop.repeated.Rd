@@ -19,13 +19,13 @@ numeric input vector.
   \item{y}{
 numeric output vector.
 }
-  \item{m}{
-positive odd integer. Loop shape parameter, see \code{\link{loop.parameters}}.
-}
   \item{n}{
 positive integer. Loop shape parameter, see \code{\link{loop.parameters}}.
 }
-  \item{subjects}{
+  \item{m}{
+positive odd integer. Loop bulging parameter, see \code{\link{loop.parameters}}.
+} 
+ \item{subjects}{
 factor of the same length as x that represents experimental units.
 }
   \item{repeated}{
@@ -77,23 +77,33 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 }
 \examples{
 data(HysteresisData)
-models <- floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3, subjects = HysteresisData$subjects,subjects.in=c("A","C"),repeated=HysteresisData$repeated)
-models
-summodels<-summary(models)
-summodels
-summodels$models["A",1]
+loopmodels.rep <- floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3, subjects = HysteresisData$subjects,subjects.in=c("A","C"),repeated=HysteresisData$repeated)
+loopmodels.rep                #Gives estimates and delta standard errors
+loopmodels.rep$Estimates      #List estimates only
+loopmodels.rep$Std.Errors     #List delta standard errors
+
 par(mfrow=c(2,2))
-plot(models)
+plot(loopmodels.rep,main='Simulated Rep Loops',values="hysteresis")
 par(mfrow=c(1,1))
 
-#Alternatively
+loopmodels.rep$models["A",1]       #Select one subject, one replication
+
+### Bootstrap estimates and standard errors (Seed is necessary if want to reproduce results)
 boot.rep.loop=floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3, subjects = HysteresisData$subjects,subjects.in=c("A","C"),repeated=HysteresisData$repeated,boot=TRUE,seed=123)
-boot.rep.loop 
-boot.rep.loop$Boot.Estimates  #list Bootstrap Estimates
-boot.rep.loop$Boot.Std.Errors #list Bootstrap Standard Errors
+boot.rep.loop                 #Gives boot estimates, boot bias, boot SE and boot quartiles WHERE IS BIAS
+boot.rep.loop$Boot.Estimates  #Lists boot estimates
+boot.rep.loop$Boot.Std.Errors #Gives boot standard errors 
+
+par(mfrow=c(2,2))
+plot(boot.rep.loop, main='Simulated Rep Boot Loops', values="hysteresis")
+par(mfrow=c(1,1))
 
 ##Can write results to a file. First set your directory from the file tab.
-##write.table(boot.rep.loop$Boot.Estimates,"Hys.eg.bootvalues.txt")
+## Change file path in command below to coincide with where you want to store data files
+##setwd("C:/Users/..........................")
+##write.table(boot.rep.loop$Boot.Estimates,"Hys.eg.repbootvalues.txt")
+##test.floop=read.table("Hys.eg.repbootvalues.txt",header=TRUE)
+##head(test.floop)
 }
 \keyword{ models }
 
