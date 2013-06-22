@@ -38,7 +38,8 @@ an object created by \code{\link{fel}} or \code{\link{floop}}.
 }
 }
 \details{
-Geometric residuals are based on the straight line distance between predicted and true values along an x,y cartesian plane, and algebraic residuals are based on the method used to calculate the \code{ellipsefit} object. If method="harmonic2" (which is always the case if this is a \code{fittedloop} object) or if bootstrapping has occurred then there are no algebraic residuals, and \code{residuals.ellipsefit} replaces these with the geometric residuals.
+Geometric residuals are based on the straight line distance between predicted and true values along an x,y cartesian plane, and algebraic residuals are based on the method used to calculate the \code{ellipsefit} object. 
+If method="harmonic2" (which is always the case if this is a \code{fittedloop} object) or if bootstrapping has occurred, then, there are no algebraic residuals and \code{residuals.ellipsefit} replaces these with the geometric residuals.
 
 Studentization for the \code{rstudent} function is performed as if method="harmonic2" regardless of the method used for fitting the ellipse/loop. Therefore, unless method="harmonic2" and no bootstrapping is performed, these are pseudo-studentized residuals, not true studentized residuals. This is internal scaling studentization. Studentization for bootstrapping in the functions \code{\link{summary.ellipsefit}}/\code{\link{summary.fittedloop}} differs from the studentization performed by \code{rstudent} in that it only accounts for the influence matrix and does not divide by the standard deviation. 
 }
@@ -58,23 +59,34 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 \code{\link{fel}}, \code{\link{floop}}, \code{\link{summary.ellipsefit}} and \code{\link{summary.fittedloop}}.
 }
 \examples{
-ellipse1 <- mel(sd.x=0.2,sd.y=0.04)
-ellipse1.fit <- fel(ellipse1$x,ellipse1$y)
-resid(ellipse1.fit)
-fitted(ellipse1.fit)
-ellipseresid<-resid(ellipse1.fit)
-plot(ellipse1.fit,main="Simulated Ellipse")
-scatterplotMatrix(cbind(ellipseresid$input,ellipseresid$output,fitted(ellipse1.fit)$input,fitted(ellipse1.fit)$output),smooth=FALSE,var.labels=c("Input Resid", "Output Resid", "Fitted Input", "Fitted Output"))
-scatterplotMatrix(cbind(ellipseresid$geometric,fitted(ellipse1.fit)$input,fitted(ellipse1.fit)$output),smooth=FALSE,var.labels=c("Geometric Resid", "Fitted Input", " Fitted Output"))
-qqnorm(ellipseresid$output)
-qqline(ellipseresid[,"output"],col="red")
-
 ##For multiple loops/ellipses
 data(HysteresisData)
-models <- floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3, subjects = HysteresisData$subjects,subjects.in=c("A"),repeated=HysteresisData$repeated)
-multresids <- residuals(models)
-scatterplotMatrix(cbind(multresids$geometric,fitted(models)$input,fitted(models)$output),smooth=FALSE,var.labels=c("Geometric Resid", "Fitted Input", "Fitted Output"),groups=multresids$repeated)
+Mloopmodels.rep <- floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3, subjects = HysteresisData$subjects,subjects.in=c("A","C"),repeated=HysteresisData$repeated)
+Mloopmodels.rep                #Gives estimates and delta standard errors
+residuals(Mloopmodels.rep)  #$input $output $geometric 
+fitted(Mloopmodels.rep)     #$input $output
+scatterplotMatrix(cbind(residuals(Mloopmodels.rep)$input,residuals(Mloopmodels.rep)$output,residuals(Mloopmodels.rep)$geometric,fitted(Mloopmodels.rep)$input,fitted(Mloopmodels.rep)$output),
+  main='Residuals for Multiple Hysteresis Loops',smooth=FALSE,var.labels=c("Input Resid","Output Resid","Geometric Resid", "Fitted Input", "Fitted Output"),groups=residuals(Mloopmodels.rep)$repeated)
+rstudent(Mloopmodels.rep)  #$input $output
+scatterplotMatrix(cbind(rstudent(Mloopmodels.rep)$input,rstudent(Mloopmodels.rep)$output,fitted(Mloopmodels.rep)$input,fitted(Mloopmodels.rep)$output),
+                  main='Studentized Residuals for Multiple Hysteresis Loops',smooth=FALSE,var.labels=c("Input Resid","Output Resid", "Fitted Input", "Fitted Output"),groups=residuals(Mloopmodels.rep)$repeated)
 
+##For single Ellipse
+ellipse1 <- mel(sd.x=0.2,sd.y=0.04)
+ellipse1.fit <- fel(ellipse1$x,ellipse1$y)
+residuals(ellipse1.fit)
+fitted(ellipse1.fit)
+scatterplotMatrix(cbind(residuals(ellipse1.fit)$input,residuals(ellipse1.fit)$output,residuals(ellipse1.fit)$geometric,fitted(ellipse1.fit)$input,fitted(ellipse1.fit)$output),
+                  main='Residuals for Simulated Ellipse',smooth=FALSE,var.labels=c("Input Resid","Output Resid","Geometric Resid", "Fitted Input", "Fitted Output"))
+
+rstudent(ellipse1.fit) #for input and output variables
+scatterplotMatrix(cbind(rstudent(ellipse1.fit)$input,rstudent(ellipse1.fit)$output,fitted(ellipse1.fit)$input,fitted(ellipse1.fit)$output),
+                  main='Studentized Residuals for Simulated Ellipse',smooth=FALSE,var.labels=c("Input Resid","Output Resid","Fitted Input", "Fitted Output"))
+
+plot(ellipse1.fit$pred.y,rstudent(ellipse1.fit)$output,xlab="Fitted Output",ylab="Output Studentized Residuals",main="Studentized Residuals:Simulated Ellipse")
+abline(h = 0, lty = 2, col = "gray")
+qqnorm(rstudent(ellipse1.fit)$output,sub='Output Studentized Residuals Simulated Ellipse')
+qqline(rstudent(ellipse1.fit)$output,col="red") #q-q line
 }
 \keyword{ models }
 
