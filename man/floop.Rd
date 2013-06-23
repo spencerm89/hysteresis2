@@ -58,6 +58,7 @@ Fits input and output variables x and y that form a hysteresis loop of the form 
 \value{
 floop returns an object of class \code{fittedloop}.
   \item{values}{estimated values of various fundamental and derived parameters of the hysteresis loop. See \code{\link{loop.parameters}}}
+  \item{Estimates}{estimated values of various fundamental and derived parameters of the hysteresis loop. See \code{\link{loop.parameters}}}
   \item{x}{the input.}
   \item{y}{the output.}
   \item{pred.x}{fitted x values.}
