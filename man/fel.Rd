@@ -51,13 +51,13 @@ other optional arguments such as \code{seed},N,\code{cbb}, passed to \code{\link
 Where the response y is a sinusoidal process with an element of randomness that lags the controlling input x, which is also a stochastic sinusoidal process, an ellipse can be used to fit the relationship between
 x and y.
 
-The values of parameters such as area, lag, retention, coercion, split angle and hysteresis.y are estimated from this ellipse.
+The values of parameters such as area, lag, retention, coercion, split angle and hysteresis.y are estimated from this ellipse.See \code{\link{loop.parameters}}.
 
 The harmonic2 method is a two step harmonic least squares model using generalized transcendental equations presented by Lapshin (1995).  Yang and Parkhurst provide the efficient estimates 
 for parameters and as such "harmonic2" is used as the default. Direct specific least squares (\code{method="direct"}) based on the work of Radim Halir and Jan Flusser is also available although work on delta method standard errors is still in progress. Finally \code{method="lm"} and 
 ellipse specific non-linear least squares (\code{method="nls"}) are included as well.
 
-If x and y contain more than 1 ellipse that needs to be fit the argument \code{subjects} can be used to identify a period of data to fit separate ellipses.
+If x and y contain more than 1 ellipse that needs to be fit, the argument \code{subjects} can be used to identify a period of data to fit separate ellipses.
 
 Bootstrapped estimates for parameter values are provided with \code{\link{summary.ellipsefit}}.  These bootstrapped estimates are generally less biased than those provided by \code{fel} in isolation.
 }
